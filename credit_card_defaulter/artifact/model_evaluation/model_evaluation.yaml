@@ -1,0 +1,5 @@
+best_model:
+  model_path: /home/mpokket/Documents/personal_data/project/Credit-Card-Default-Prediction/credit_card_defaulter/artifact/model_trainer/2023-04-28-18-20-28/trained_model/model.pkl
+history:
+  2023-04-28-18-20-28:
+    model_path: /home/mpokket/Documents/personal_data/project/Credit-Card-Default-Prediction/credit_card_defaulter/artifact/model_trainer/2023-04-16-23-06-55/trained_model/model.pkl
