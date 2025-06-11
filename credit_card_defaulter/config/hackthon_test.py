@@ -205,3 +205,21 @@ class Configuration:
 
         except Exception as e:
             raise CreditCardDefaulterException(e, sys)
+
+
+    def submit(self, user_input_link, req_type, specific_key=None):
+        print(f"user_input_link: {user_input_link}, req_type: {req_type}")
+        if req_type == "REPO":
+            repo_path = self.clone_repo(user_input_link)
+            print("Processing as a repository link")
+        else:
+            print("Inside else")
+            res = self.get_merge_request_changes(user_input_link)
+            if not res:
+                print("No changes found in the merge request.")
+                return False
+            result = self.get_data_from_model_for_mr(res)
+            self.update_data(specific_key, result)
+
+            return False
+        return
