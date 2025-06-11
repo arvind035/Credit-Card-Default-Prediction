@@ -34,7 +34,6 @@ class Configuration:
 
             dataset_url = data_ingestion_info[DATA_INGESTION_DATASET_URL_KEY]
             tgz_dir = os.path.join(
-                data_ingestion_artifact_dir,
                 data_ingestion_info[DATA_INGESTION_TGZ_DIR_KEY]
             )
             raw_data_dir = os.path.join(
@@ -73,9 +72,7 @@ class Configuration:
             
             data_validation_info = self.config_info[DATA_VALIDATION_CONFIG_KEY]
 
-            schema_dir = data_validation_info[DATA_VALIDATION_SCHEMA_DIR_KEY]
             schema_file_name = data_validation_info[DATA_VALIDATION_SCHEMA_FILE_NAME_KEY]
-            report_file_dir= data_validation_info[DATA_VALIDATION_REPORT_FILE_NAME_KEY]
             report_file_page_dir= data_validation_info[DATA_VALIDATION_REPORT_PAGE_FILE_NAME_KEY]
 
             schema_file_path = os.path.join(ROOT_DIR, schema_dir, schema_file_name)
@@ -108,13 +105,11 @@ class Configuration:
 
             preprocessed_object_file_path = os.path.join(
                 data_transformation_artifact_dir,
-                data_transformation_config_info[DATA_TRANSFORMATION_PREPROCESSING_DIR_KEY],
                 data_transformation_config_info[DATA_TRANSFORMATION_PREPROCESSED_FILE_NAME_KEY]
             )
 
             
             transformed_train_dir=os.path.join(
-            data_transformation_artifact_dir,
             data_transformation_config_info[DATA_TRANSFORMATION_DIR_NAME_KEY],
             data_transformation_config_info[DATA_TRANSFORMATION_TRAIN_DIR_NAME_KEY]
             )
@@ -208,22 +203,5 @@ class Configuration:
             logging.info(f"Model pusher config {model_pusher_config}")
             return model_pusher_config
 
-        except Exception as e:
-            raise CreditCardDefaulterException(e, sys)
-
-
-
-    def get_training_pipeline_config(self) -> TrainingPipelineConfig:
-        '''
-        This is function for getting traning pipeline config
-        '''
-        try:
-            training_pipeline_config = self.config_info[TRAINING_PIPELINE_CONFIG_KEY]
-            artifact_dir = os.path.join(ROOT_DIR,
-            training_pipeline_config[TRAINING_PIPELINE_KEY],
-            training_pipeline_config[TRAINING_PIPELINE_ARTIFACT_DIR_KEY]
-            )
-            training_pipeline_config = TrainingPipelineConfig(artifact_dir=artifact_dir)
-            return training_pipeline_config
         except Exception as e:
             raise CreditCardDefaulterException(e, sys)
